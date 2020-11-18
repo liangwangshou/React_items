@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/prop-types.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <!-- <div id="test"></div>
+    <script type="text/babel">
+      //创建虚拟DOM元素对象
+      var vDom = <h1>hello react</h1>;
+      //虚拟DOM渲染到页面的真实dom容器中
+      ReactDOM.render(vDom, document.querySelector("#test"));
+    </script> -->
+    <script>
+      var family = "We Are Family";
+      var myId = "liang";
+    </script>
+    <div class="test1"></div>
+    <div class="test2"></div>
+    <script type="text/babel">
+      var vDom1 = (
+        <h3 id={family.toLocaleUpperCase()}>{myId.toLocaleLowerCase()}</h3>
+      );
+      var vDom2 = (
+        <h2 id={myId.toLocaleUpperCase()}>{family.toLocaleUpperCase()}</h2>
+      );
+      ReactDOM.render(vDom1, document.querySelector(".test1"));
+      ReactDOM.render(vDom2, document.querySelector(".test2"));
+    </script>
+  </body>
+</html>

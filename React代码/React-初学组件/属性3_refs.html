@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../js引入库/react.development.js"></script>
+  <script src="../js引入库/react-dom.development.js"></script>
+  <script src="../js引入库/prop-types.js"></script>
+  <script src="../js引入库/babel.min.js"></script>
+  <div class="contain"></div>
+  <script type="text/babel">
+    class MyConponent extends React.Component {
+        constructor(props) {
+          super(props);
+          this.showInput = this.showInput.bind(this);
+          this.handleBlur = this.handleBlur.bind(this);
+        }
+        showInput() {
+          //   const input = this.refs.content;
+          //   console.log(input.value);
+          console.log(this.input.value);
+        }
+        handleBlur(e) {
+          //   console.log(e.target.value);  还可以
+          //   console.log(this.refs.content2.value); 还可以
+          console.log(this.input2.value);
+        }
+        render() {
+          return (
+            <div>
+              <input
+                type="text"
+                // ref="content" 还可以
+                ref={(input) => (this.input = input)}
+              />
+              <button onClick={this.showInput}>提示输入</button>&nbsp;&nbsp;
+              <input
+                type="text"
+                placeholder="失去焦点触发"
+                // ref="content2" 还可以
+                ref={(input) => (this.input2 = input)}
+                onBlur={this.handleBlur}
+              />
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(<MyConponent />, document.querySelector(".contain"));
+    </script>
+</body>
+
+</html>

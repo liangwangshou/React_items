@@ -1,0 +1,53 @@
+import React, { Component } from "react";
+
+import * as actions from "../redux/action";
+
+export default class App extends Component {
+  increment = () => {
+    const number = this.select.value * 1;
+    //调用store的方法更新状态
+    this.props.store.dispatch(actions.increment(number));
+    // debugger;
+  };
+  decrement = () => {
+    const number = this.select.value * 1;
+    //调用store的方法更新状态
+    this.props.store.dispatch(actions.decrement(number));
+  };
+  incrementIfOdd = () => {
+    const count = this.props.store.getState();
+    if (count % 2 === 1) {
+      const number = this.select.value * 1;
+      //调用store的方法更新状态
+      this.props.store.dispatch(actions.increment(number));
+    }
+  };
+
+  incrementAsync = () => {
+    const number = this.select.value * 1;
+    setTimeout(() => {
+      //调用store的方法更新状态
+      this.props.store.dispatch(actions.increment(number));
+    }, 1000);
+  };
+
+  render() {
+    const count = this.props.store.getState();
+    return (
+      <div>
+        <p>Click {count} times</p>
+        <select ref={(select) => (this.select = select)}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        &nbsp;&nbsp;
+        <button onClick={this.increment}>+</button>&nbsp;&nbsp;
+        <button onClick={this.decrement}>-</button>&nbsp;&nbsp;
+        <button onClick={this.incrementIfOdd}>imcrement if odd</button>
+        &nbsp;&nbsp;
+        <button onClick={this.incrementAsync}>imcrement Async</button>
+      </div>
+    );
+  }
+}

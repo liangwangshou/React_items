@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="contain"></div>
+  <script src="../js引入库/react.development.js"></script>
+  <script src="../js引入库/react-dom.development.js"></script>
+  <script src="../js引入库/prop-types.js"></script>
+  <script src="../js引入库/babel.min.js"></script>
+  <script type="text/babel">
+    class MyComponent extends React.Component {
+        constructor(props) {
+          super(props);
+          //初始化状态
+          this.state = {
+            isLikeMe: false,
+          };
+          // this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick=(e)=> {
+          const isLikeMe = !this.state.isLikeMe;
+          // this.setState({isLikeMe:isLikeMe}) 可简写为
+          console.log(e);
+          this.setState({ isLikeMe });
+        }
+        render() {
+          //读取状态
+          const { isLikeMe } = this.state;
+          return (
+            <h2 onClick={()=>this.handleClick('liang')}>
+              {isLikeMe ? "你喜欢我" : "我喜欢你"}
+            </h2>
+          );
+        }
+      }
+      ReactDOM.render(<MyComponent />, document.querySelector(".contain"));
+    </script>
+</body>
+
+</html>

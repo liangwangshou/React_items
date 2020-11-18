@@ -1,0 +1,5 @@
+export const Add = 'handleAdd'
+export const Del = 'handleDel'
+export const Get = 'getComments'
+export const INCREMENT = 'increment'
+export const DECREMENT = 'decrement'

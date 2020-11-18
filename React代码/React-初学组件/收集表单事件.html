@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../js引入库/react.development.js"></script>
+  <script src="../js引入库/react-dom.development.js"></script>
+  <script src="../js引入库/prop-types.js"></script>
+  <script src="../js引入库/babel.min.js"></script>
+  <div class="example"></div>
+  <script type="text/babel">
+    class LoginForm extends React.Component {
+      state={
+        pwd:''
+      }
+      handleSubmit=(e)=>{
+        e.preventDefault();
+       console.log(this.input.value+','+this.state.pwd);
+}
+      handlePwd=(e)=>{
+       const pwd=e.target.value;
+       this.setState({pwd})
+      }
+      render(){
+        return(
+          <div>
+          <form action="" onSubmit={this.handleSubmit}>
+          用户名<input type="text" ref={input=>this.input=input}/>
+          密码<input type="password" value={this.state.pwd} onChange={this.handlePwd}/>
+          <input type="submit" value='提交'/>
+          </form>
+          
+          </div>
+        )
+      }}
+      ReactDOM.render(<LoginForm />, document.querySelector(".example"));
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- constructor(props) {
+  super(props);
+  this.handleForm = this.handleForm.bind(this);
+  this.handlePwd = this.handlePwd.bind(this);
+  this.state = {
+    pwd: "",
+  };
+}
+handlePwd(e) {
+  const pwd = e.target.value;
+  this.setState({ pwd: pwd });
+}
+handleForm(e) {
+  e.preventDefault();
+  var username = this.inputForm.value;
+  console.log(`用户名为${username}，密码为${this.state.pwd}`);
+}
+render() {
+  return (
+    <form action="" onSubmit={this.handleForm}>
+      用户名
+      <input type="text" ref={(input) => (this.inputForm = input)} />
+      密码{" "}
+      <input
+        type="password"
+        value={this.state.pwd}
+        onChange={this.handlePwd}
+      />
+      <input type="submit" value="提交" />
+    </form>
+  );
+} -->

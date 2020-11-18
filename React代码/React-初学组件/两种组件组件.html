@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="first"></div>
+    <div class="second"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/prop-types.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      //1 定于组件
+      // 方式1 工厂函数组件（简单组件）
+      function MyComponent() {
+        return <h2>工厂函数组件（简单组件）</h2>;
+      }
+      //方式2 ES6类组件（复杂组件）
+      class MyComponent2 extends React.Component {
+        render() {
+          return <h3>ES6类组件（复杂组件）</h3>;
+        }
+      }
+
+      ReactDOM.render(<MyComponent />, document.querySelector(".first"));
+      ReactDOM.render(<MyComponent2 />, document.querySelector(".second"));
+    </script>
+  </body>
+</html>

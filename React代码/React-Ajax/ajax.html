@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../js引入库/react.development.js"></script>
+  <script src="../js引入库/react-dom.development.js"></script>
+  <script src="../js引入库/prop-types.js"></script>
+  <script src="../js引入库/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.js"></script>
+  <div class="example"></div>
+  <script type="text/babel">
+    //测试接口 http://m.ctrip.com/restapi/h5api/globalsearch/search?userid=M2208559994&source=mobileweb&action=mobileweb&keyword=1
+      class MostStarrope extends React.Component {
+        state = {
+          repoName: "",
+          repoUrl: "",
+        };
+        componentDidMount() {
+          const url =
+            "http://m.ctrip.com/restapi/h5api/globalsearch/search?userid=M2208559994&source=mobileweb&action=mobileweb&keyword=1";
+          //   axios.get(url).then((response) => {
+          //     const result = response.data;
+          //     const { word, url } = result.data[0];
+
+          //     this.setState({
+          //       repoName: word,
+          //       repoUrl: url,
+          //     });
+          //   });
+          // }
+          fetch(url)
+            .then((response) => {
+              return response.json();
+            })
+            .then((response) => {
+              const result = response.data;
+              const { word, url } = result[0];
+              this.setState({
+                repoName: word,
+                repoUrl: url,
+              });
+            });
+        }
+
+        render() {
+          const { repoName, repoUrl } = this.state;
+          if (!repoName) {
+            return <h2>LOADING。。。</h2>;
+          } else {
+            return (
+              <h2>
+                most star repo is <a href={repoUrl}>{repoName}</a>
+              </h2>
+            );
+          }
+        }
+      }
+      ReactDOM.render(<MostStarrope />, document.querySelector(".example"));
+    </script>
+</body>
+
+</html>

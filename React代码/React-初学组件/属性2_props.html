@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/prop-types.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <div class="contain1"></div>
+    <div class="contain2"></div>
+    <script type="text/babel">
+      //   function Person(props) {
+      //     return (
+      //       <ul>
+      //         <li>姓名：{props.name}</li>
+      //         <li>年龄：{props.age}</li>
+      //         <li>性别：{props.sex}</li>
+      //       </ul>
+      //     );
+      //   }
+      class Person extends React.Component {
+        render() {
+          return (
+            console.log(this),
+            (
+              <ul>
+                <li>姓名：{this.props.name}</li>
+                <li>年龄：{this.props.age}</li>
+                <li>性别：{this.props.sex}</li>
+              </ul>
+            )
+          );
+        }
+      }
+      Person.defaultProps = {
+        sex: "男",
+        age: 18,
+      };
+      Person.propTypes = {
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number,
+      };
+      const p1 = {
+        name: "liang",
+      };
+      const p2 = {
+        name: "zhang",
+        age: 23,
+        sex: "女",
+      };
+      ReactDOM.render(
+        // <Person name={"liang"} age={18} sex={"男"} />
+        <Person {...p1} />,
+        document.querySelector(".contain1")
+      );
+      ReactDOM.render(
+        // <Person name={"liang"} age={18} sex={"男"} />
+        <Person {...p2} />,
+        document.querySelector(".contain2")
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../js引入库/react.development.js"></script>
+  <script src="../js引入库/react-dom.development.js"></script>
+  <script src="../js引入库/prop-types.js"></script>
+  <script src="../js引入库/babel.min.js"></script>
+  <div class="example"></div>
+  <script type="text/babel">
+    class App extends React.Component {
+        constructor(props) {
+          super(props);
+          //初始化状态
+          this.state = {
+            todos: ["吃饭", "睡觉", "打代码"],
+          };
+          this.update = this.update.bind(this);
+        }
+        update(todo) {
+          const { todos } = this.state;
+          todos.unshift(todo);
+          this.setState({ todos });
+        }
+        render() {
+          return (
+            <div>
+              <h1>APP to Add List</h1>
+              <Add count={this.state.todos.length} toadd={this.update} />
+              <List todos={this.state.todos} />
+            </div>
+          );
+        }
+      }
+      class Add extends React.Component {
+        constructor(props) {
+          super(props);
+          this.add = this.add.bind(this);
+        }
+        add() {
+          const val = this.addvalue.value;
+          this.props.toadd(val);
+          this.addvalue.value = "";
+        }
+        render() {
+          return (
+            <div>
+              <input
+                type="text"
+                placeholder="请输入你要添加的内容"
+                ref={(input) => (this.addvalue = input)}
+              />
+              <button onClick={this.add}>Add {this.props.count + 1}th</button>
+            </div>
+          );
+        }
+      }
+      class List extends React.Component {
+        render() {
+          return (
+            <ul>
+              {this.props.todos.map((todo, index) => (
+                <li key={index}>{todo}</li>
+              ))}
+            </ul>
+          );
+        }
+      }
+      List.propTypes = {
+        todos: PropTypes.array.isRequired,
+      };
+      Add.propTypes = {
+        count: PropTypes.number.isRequired,
+        toadd: PropTypes.func.isRequired,
+      };
+      ReactDOM.render(<App />, document.querySelector(".example"));
+    </script>
+</body>
+
+</html>
